@@ -14,6 +14,9 @@
     "url": "https://github.com/ai-action/cypress-ai-demo/issues"
   },
   "homepage": "https://github.com/ai-action/cypress-ai-demo#readme",
+  "devDependencies": {
+    "typescript": "5.8.3"
+  },
   "private": true,
   "license": "MIT"
 }
