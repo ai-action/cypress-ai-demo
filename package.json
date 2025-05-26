@@ -2,9 +2,6 @@
   "name": "cypress-ai-demo",
   "description": "Cypress AI Demo",
   "author": "Mark <mark@remarkablemark.org>",
-  "scripts": {
-    "cypress:open": "cypress open"
-  },
   "devDependencies": {
     "@langchain/core": "0.3.57",
     "@langchain/ollama": "0.2.0",

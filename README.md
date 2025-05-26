@@ -1,2 +1,56 @@
-# cypress-ai-demo
-Cypress AI Demo
+# Cypress AI Demo
+
+[Cypress](https://www.cypress.io/) AI Demo.
+
+## Prerequisites
+
+[Node.js](https://nodejs.org/):
+
+```sh
+brew install node
+```
+
+[Ollama](https://ollama.com/):
+
+```sh
+brew install ollama
+```
+
+[llama3](https://ollama.com/library/llama3):
+
+```sh
+ollama pull llama3
+```
+
+## Install
+
+Clone the repository:
+
+```sh
+git clone https://github.com/ai-action/cypress-ai-demo.git
+cd cypress-ai-demo
+```
+
+Install the dependencies:
+
+```sh
+npm install
+```
+
+## Run
+
+Start Ollama:
+
+```sh
+ollama serve
+```
+
+Open Cypress:
+
+```sh
+npx cypress open
+```
+
+## License
+
+[MIT](LICENSE)
