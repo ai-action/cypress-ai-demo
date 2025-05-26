@@ -9,6 +9,7 @@
     "@langchain/core": "0.3.57",
     "@langchain/ollama": "0.2.0",
     "cypress": "14.4.0",
+    "sanitize-html": "2.17.0",
     "typescript": "5.8.3"
   },
   "private": true,
