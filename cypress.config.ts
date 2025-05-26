@@ -6,4 +6,7 @@ export default defineConfig({
       // implement node event listeners here
     },
   },
+
+  // don't block CORS for LLM request
+  chromeWebSecurity: false,
 });
