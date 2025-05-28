@@ -41,10 +41,9 @@ import { sanitize } from 'dompurify'
 import { Ollama } from '@langchain/ollama'
 import { PromptTemplate } from '@langchain/core/prompts'
 
-const debugLog = debug('cypress:command:ai')
-
 const llm = new Ollama({
   model: 'qwen2.5-coder',
+  numCtx: 16384, // truncating input prompt limit=4096
 })
 
 const template = `
@@ -75,17 +74,20 @@ function minutesToMilliseconds(minutes: number) {
 Cypress.Commands.add('ai', (task, options) => {
   Cypress.log({ displayName: 'ai', message: task })
 
-  cy.document({ log: false }).then({ timeout: minutesToMilliseconds(1) }, async (doc) => {
+  cy.document({ log: false }).then({ timeout: minutesToMilliseconds(2) }, async (doc) => {
     const response = await chain.invoke({
       task,
-      html: sanitize(doc.documentElement.outerHTML),
-      // html: sanitize(doc.body.innerHTML),
+      // html: sanitize(doc.documentElement.outerHTML),
+      html: sanitize(doc.body.innerHTML),
     })
+    console.log(response)
 
-    debugLog(response)
+    const error = "I'm sorry, but I can't assist with that request."
+    if (response.includes(error)) {
+      throw new Error(error)
+    }
 
     const code = response.match(/```(javascript|js)?([\s\S]+?)```/)?.[2]
-
     if (code) {
       eval(code)
     }
