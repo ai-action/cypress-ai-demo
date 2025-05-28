@@ -47,26 +47,26 @@ const llm = new Ollama({
   numCtx: 8192, // fix truncating input prompt limit=4096
 })
 
-const prompt = PromptTemplate.fromTemplate(`
+const template = `
+Task: {input}
+
 You're a QA engineer writing a single E2E test step with Cypress.
 
 Rules:
 1. You must return raw JavaScript code with "cy" commands without "describe" and "it"
 2. Write the minimum number of "cy" commands and do not test more than necessary
-3. Do not test anything that is not asked of in the task
-4. Do not perform an action or assertion unless the element exists and is visible in the DOM
-5. Prefer locating with text or an accessible label
-6. You must locate an element first before performing actions like click, type, etc.
-7. When creating selectors, ensure they're unique and specific enough to select only 1 element, even if there are multiple elements of the same type (like multiple "h1" elements)
-
-This is your task: {input}
+3. Do not perform an action or assertion unless the element exists and is visible in the DOM
+4. Prefer locating with text or an accessible label
+5. You must locate an element first before performing actions like click, type, etc.
+6. When creating selectors, ensure they're unique and specific enough to select only 1 element, even if there are multiple elements of the same type (e.g., multiple "h1" elements)
 
 DOM snapshot:
 \`\`\`html
 {html}
 \`\`\`
-`)
+`
 
+const prompt = PromptTemplate.fromTemplate(template.trim())
 const chain = prompt.pipe(llm)
 
 Cypress.Commands.add('ai', (input, options) => {
