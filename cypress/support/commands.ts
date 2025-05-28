@@ -37,7 +37,7 @@
 // }
 
 import debug from 'debug'
-import sanitizeHtml from 'sanitize-html'
+import { sanitize } from 'dompurify'
 import { Ollama } from '@langchain/ollama'
 import { PromptTemplate } from '@langchain/core/prompts'
 
@@ -78,11 +78,12 @@ Cypress.Commands.add('ai', (task, options) => {
   cy.document({ log: false }).then({ timeout: minutesToMilliseconds(1) }, async (doc) => {
     const response = await chain.invoke({
       task,
-      html: sanitizeHtml(doc.documentElement.outerHTML),
-      // html: sanitizeHtml(doc.body.innerHTML),
+      html: sanitize(doc.documentElement.outerHTML),
+      // html: sanitize(doc.body.innerHTML),
     })
 
     debugLog(response)
+
     const code = response.match(/```(javascript|js)?([\s\S]+?)```/)?.[2]
 
     if (code) {
