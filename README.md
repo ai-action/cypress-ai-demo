@@ -16,12 +16,6 @@ brew install node
 brew install ollama
 ```
 
-[llama3](https://ollama.com/library/llama3):
-
-```sh
-ollama pull llama3
-```
-
 ## Install
 
 Clone the repository:
@@ -43,6 +37,12 @@ Start Ollama:
 
 ```sh
 ollama serve
+```
+
+Download [model](https://ollama.com/library/qwen2.5-coder):
+
+```sh
+ollama pull qwen2.5-coder
 ```
 
 Open Cypress:

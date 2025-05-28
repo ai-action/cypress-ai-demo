@@ -1,6 +1,5 @@
 describe('template spec', () => {
   it('passes', () => {
-    cy.visit('https://example.cypress.io')
-    cy.ai('I see "Kitchen Sink"')
+    cy.ai('go to example.cypress.io and see heading "Kitchen Sink"')
   })
 })
