@@ -36,9 +36,12 @@
 //   }
 // }
 
+import debug from 'debug'
+import sanitizeHtml from 'sanitize-html'
 import { Ollama } from '@langchain/ollama'
 import { PromptTemplate } from '@langchain/core/prompts'
-import sanitizeHtml from 'sanitize-html';
+
+const debugLog = debug('cypress:command:ai')
 
 const llm = new Ollama({
   model: 'qwen2.5-coder',
@@ -70,17 +73,18 @@ function minutesToMilliseconds(minutes: number) {
 }
 
 Cypress.Commands.add('ai', (task, options) => {
-  cy.document().then({ timeout: minutesToMilliseconds(1) }, async (doc) => {
+  Cypress.log({ displayName: 'ai', message: task })
+
+  cy.document({ log: false }).then({ timeout: minutesToMilliseconds(1) }, async (doc) => {
     const response = await chain.invoke({
       task,
       html: sanitizeHtml(doc.documentElement.outerHTML),
       // html: sanitizeHtml(doc.body.innerHTML),
     })
 
-    Cypress.log({ message: response })
+    debugLog(response)
+    const code = response.match(/```(javascript|js)?([\s\S]+?)```/)?.[2]
 
-    const code = response.match(/```(js|javascript)?([\s\S]+?)```/)?.[2]
-    console.log(code)
     if (code) {
       eval(code)
     }
