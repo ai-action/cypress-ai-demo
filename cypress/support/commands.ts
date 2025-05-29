@@ -36,10 +36,10 @@
 //   }
 // }
 
-import debug from 'debug'
-import { sanitize } from 'dompurify'
 import { Ollama } from '@langchain/ollama'
 import { PromptTemplate } from '@langchain/core/prompts'
+import { resolve } from 'path'
+import { sanitize } from 'dompurify'
 
 const llm = new Ollama({
   model: 'qwen2.5-coder',
@@ -71,26 +71,75 @@ function minutesToMilliseconds(minutes: number) {
   return 1000 * 60 * minutes
 }
 
+function getGeneratedFilePath(): string {
+  return resolve(Cypress.spec.absolute, `../__generated__/${Cypress.spec.name}.json`)
+}
+
+const noop = () => {}
+
+function readGeneratedFile() {
+  return cy.readFile(getGeneratedFilePath(), { log: false }).should(noop)
+}
+
+function getTestKey(): string {
+  return Cypress.currentTest.titlePath.join(' ')
+}
+
+function saveGeneratedCode(task: string, code: string) {
+  readGeneratedFile().then((contents) => {
+    contents = contents || {}
+
+    const key = getTestKey()
+    contents[key] = contents[key] || {}
+    contents[key][task] = code
+
+    cy.writeFile(getGeneratedFilePath(), JSON.stringify(contents, null, 2), { log: false })
+  })
+}
+
+function getGeneratedCode(task: string) {
+  return readGeneratedFile().then((json) => {
+    try {
+      return json[getTestKey()][task]
+    } catch (error) {
+      return ''
+    }
+  })
+}
+
 Cypress.Commands.add('ai', (task, options) => {
   Cypress.log({ displayName: 'ai', message: task })
 
-  cy.document({ log: false }).then({ timeout: minutesToMilliseconds(2) }, async (doc) => {
-    const response = await chain.invoke({
-      task,
-      // html: sanitize(doc.documentElement.outerHTML),
-      html: sanitize(doc.body.innerHTML),
+  return readGeneratedFile().then((json) => {
+    try {
+      const code = json[getTestKey()][task]
+
+      if (code) {
+        return eval(code)
+      }
+    } catch (error) {
+      // pass
+    }
+
+    cy.document({ log: false }).then({ timeout: minutesToMilliseconds(2) }, async (doc) => {
+      const response = await chain.invoke({
+        task,
+        // html: sanitize(doc.documentElement.outerHTML),
+        html: sanitize(doc.body.innerHTML),
+      })
+      // console.log(response)
+
+      const error = "I'm sorry, but I can't assist with that request."
+      if (response.includes(error)) {
+        throw new Error(error)
+      }
+
+      const code = response.match(/```(javascript|js)?([\s\S]+?)```/)?.[2]?.trim()
+      if (code) {
+        eval(code)
+        saveGeneratedCode(task, code)
+      }
     })
-    console.log(response)
-
-    const error = "I'm sorry, but I can't assist with that request."
-    if (response.includes(error)) {
-      throw new Error(error)
-    }
-
-    const code = response.match(/```(javascript|js)?([\s\S]+?)```/)?.[2]
-    if (code) {
-      eval(code)
-    }
   })
 })
 
