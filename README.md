@@ -1,5 +1,7 @@
 # Cypress AI Demo
 
+[![cypress](https://github.com/ai-action/cypress-ai-demo/actions/workflows/cypress.yml/badge.svg)](https://github.com/ai-action/cypress-ai-demo/actions/workflows/cypress.yml)
+
 [Cypress](https://www.cypress.io/) AI Demo.
 
 ## Prerequisites
