@@ -2,7 +2,7 @@
 
 [![cypress](https://github.com/ai-action/cypress-ai-demo/actions/workflows/cypress.yml/badge.svg)](https://github.com/ai-action/cypress-ai-demo/actions/workflows/cypress.yml)
 
-[Cypress](https://www.cypress.io/) AI Demo.
+[Cypress AI](https://github.com/ai-action/cy-ai) demo.
 
 ## Prerequisites
 
@@ -35,13 +35,13 @@ npm install
 
 ## Run
 
-Start Ollama:
+Start Ollama server:
 
 ```sh
 ollama serve
 ```
 
-Download [model](https://ollama.com/library/qwen2.5-coder):
+Download the [LLM](https://ollama.com/library/qwen2.5-coder):
 
 ```sh
 ollama pull qwen2.5-coder

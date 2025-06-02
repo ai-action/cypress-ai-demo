@@ -12,10 +12,8 @@
     "test": "cypress run"
   },
   "dependencies": {
-    "@langchain/core": "0.3.57",
-    "@langchain/ollama": "0.2.0",
-    "cypress": "14.4.0",
-    "dompurify": "3.2.6"
+    "cy-ai": "0.5.0",
+    "cypress": "14.4.0"
   },
   "devDependencies": {
     "@commitlint/cli": "19.8.1",
