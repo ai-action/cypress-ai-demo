@@ -2,6 +2,15 @@
   "name": "cypress-ai-demo",
   "description": "Cypress AI Demo",
   "author": "Mark <mark@remarkablemark.org>",
+  "scripts": {
+    "clean": "rm -rf cypress/{downloads,screenshots,videos} docs lib",
+    "cypress:open": "cypress open",
+    "lint": "eslint .",
+    "lint:fix": "npm run lint -- --fix",
+    "lint:tsc": "tsc --noEmit",
+    "prepare": "husky",
+    "test": "cypress run"
+  },
   "dependencies": {
     "@langchain/core": "0.3.57",
     "@langchain/ollama": "0.2.0",
@@ -9,6 +18,21 @@
     "dompurify": "3.2.6"
   },
   "devDependencies": {
+    "@commitlint/cli": "19.8.1",
+    "@commitlint/config-conventional": "19.8.1",
+    "@eslint/compat": "1.2.9",
+    "@eslint/eslintrc": "3.3.1",
+    "@eslint/js": "9.28.0",
+    "@typescript-eslint/eslint-plugin": "8.33.0",
+    "@typescript-eslint/parser": "8.33.0",
+    "eslint": "9.28.0",
+    "eslint-plugin-prettier": "5.4.1",
+    "eslint-plugin-simple-import-sort": "12.1.1",
+    "eslint-plugin-tsdoc": "0.4.0",
+    "globals": "16.2.0",
+    "husky": "9.1.7",
+    "lint-staged": "16.1.0",
+    "prettier": "3.5.3",
     "typescript": "5.8.3"
   },
   "private": true,

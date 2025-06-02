@@ -12,6 +12,5 @@
     "skipLibCheck": true,
     "types": ["cypress", "node"],
     "noImplicitThis": false
-  },
-  "include": ["src"]
+  }
 }
