@@ -35,7 +35,7 @@ npm install
 
 ## Run
 
-Start Ollama server:
+Start the Ollama server:
 
 ```sh
 ollama serve
