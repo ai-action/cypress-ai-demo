@@ -12,7 +12,7 @@
     "test": "cypress run"
   },
   "dependencies": {
-    "cy-ai": "0.5.0",
+    "cy-ai": "0.6.0",
     "cypress": "14.4.1"
   },
   "devDependencies": {

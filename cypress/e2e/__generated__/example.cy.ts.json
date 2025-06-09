@@ -1,8 +1,8 @@
 {
   "example.cypress.io submits form": {
-    "go to example.cypress.io and see heading \"Kitchen Sink\"": "cy.visit('https://example.cypress.io')\ncy.contains('Kitchen Sink').should('be.visible')",
-    "click on \"Commands\" nav dropdown and click on link \"Actions\"": "cy.contains('Commands').click()\ncy.contains('Actions').click()",
-    "find label \"Coupon Code\" and type \"HALFOFF\" in text field": "cy.contains('Coupon Code').parent().next().type('HALFOFF')",
-    "click button \"Submit\"": "cy.get('button:contains(\"Submit\")').click()"
+    "go to example.cypress.io and see heading \"Kitchen Sink\" 1": "cy.visit('https://example.cypress.io')\ncy.contains('Kitchen Sink').should('be.visible')",
+    "click on \"Commands\" nav dropdown and click on link \"Actions\" 1": "cy.contains('Commands').click()\ncy.contains('Actions').click()",
+    "find label \"Coupon Code\" and type \"HALFOFF\" in text field 1": "cy.contains('Coupon Code').parent().next().type('HALFOFF')",
+    "click button \"Submit\" 1": "cy.get('button:contains(\"Submit\")').click()"
   }
 }
