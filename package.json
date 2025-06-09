@@ -21,8 +21,6 @@
     "@eslint/compat": "1.2.9",
     "@eslint/eslintrc": "3.3.1",
     "@eslint/js": "9.28.0",
-    "@typescript-eslint/eslint-plugin": "8.33.1",
-    "@typescript-eslint/parser": "8.33.1",
     "eslint": "9.28.0",
     "eslint-plugin-prettier": "5.4.1",
     "eslint-plugin-simple-import-sort": "12.1.1",
@@ -31,7 +29,8 @@
     "husky": "9.1.7",
     "lint-staged": "16.1.0",
     "prettier": "3.5.3",
-    "typescript": "5.8.3"
+    "typescript": "5.8.3",
+    "typescript-eslint": "8.33.1"
   },
   "private": true,
   "license": "MIT"
