@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "cy-ai": "0.6.4",
-    "cypress": "15.20.0"
+    "cypress": "15.20.1"
   },
   "devDependencies": {
     "@commitlint/cli": "21.2.1",
