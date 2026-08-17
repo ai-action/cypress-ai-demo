@@ -16,7 +16,7 @@
     "cypress": "15.20.1"
   },
   "devDependencies": {
-    "@commitlint/cli": "21.2.1",
+    "@commitlint/cli": "21.2.2",
     "@commitlint/config-conventional": "21.2.0",
     "@eslint/compat": "2.1.0",
     "@eslint/eslintrc": "3.3.6",
